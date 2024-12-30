@@ -1,0 +1,56 @@
+/* Custom CSS for AdonisJS Todo App */
+
+/* Form styles */
+.form-group {
+    margin-bottom: 20px;
+}
+.navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    
+}
+/* Task list styles */
+#taskList {
+    margin-top: 20px;
+}
+
+/* Task item styles */
+.task-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+
+.task-item h3 {
+    margin-bottom: 5px;
+}
+
+.task-item p {
+    margin-bottom: 5px;
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Responsive styles */
+@media (max-width: 576px) {
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .task-item {
+        padding: 8px;
+        margin-bottom: 8px;
+    }
+}
