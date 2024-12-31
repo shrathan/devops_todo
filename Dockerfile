@@ -6,7 +6,7 @@ RUN npm install
 COPY . .
 # RUN npm run build
 
-# Production Stages
+# Production Stage
 FROM node:16-slim
 WORKDIR /app
 COPY --from=build /app /app
