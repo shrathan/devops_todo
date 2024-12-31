@@ -10,5 +10,6 @@ COPY . .
 FROM node:16-slim
 WORKDIR /app
 COPY --from=build /app /app
+COPY .env .env
 EXPOSE 3000
 CMD ["npm", "start"]
