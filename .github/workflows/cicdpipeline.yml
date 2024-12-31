@@ -40,4 +40,4 @@ jobs:
             cd /var/www/todo-app
             docker-compose pull
             docker-compose up -d
-          timeout: 120
+          timeout: 120s
