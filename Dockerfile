@@ -6,7 +6,7 @@ RUN npm install
 COPY . .
 #RUN npm run build
 
-# Production stages
+# Production stage
 FROM nginx:alpine
 COPY --from=builder /app /usr/share/nginx/html
 EXPOSE 3000
