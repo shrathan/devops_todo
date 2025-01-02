@@ -32,16 +32,20 @@ jobs:
       run: |
         docker tag shrathan/devops-todo-app shrathan/devops-todo-app:latest
         docker push shrathan/devops-todo-app:latest
-    
-    - name: Add SSH key to SSH agent
+
+    - name: Set up SSH key for deployment
       run: |
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' | ssh-add -
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -t rsa ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SERVER_HOST: ${{ secrets.SERVER_HOST }}
 
-    - name: Deploy Application
+    - name: Deploy Application on Ubuntu Server
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} << EOF
+        ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.SERVER_HOST }} << EOF
         cd /home/ubuntu/devops_todo
         docker-compose down
         docker-compose pull
