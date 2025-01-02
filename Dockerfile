@@ -6,7 +6,7 @@ RUN npm install
 COPY . .
 #RUN npm run build
 
-# Stage 2: Production Stages
+# Stage 2: Production Stage
 FROM node:22-alpine
 WORKDIR /app
 COPY --from=builder /app /app
