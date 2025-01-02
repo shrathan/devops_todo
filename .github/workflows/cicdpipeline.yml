@@ -32,6 +32,12 @@ jobs:
       run: |
         docker tag shrathan/devops-todo-app shrathan/devops-todo-app:latest
         docker push shrathan/devops-todo-app:latest
+    
+    - name: Add SSH key to SSH agent
+      run: |
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' | ssh-add -
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Deploy Application
       run: |
